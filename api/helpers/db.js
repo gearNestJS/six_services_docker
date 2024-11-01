@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-const { db } = require('../configurations');
+const { DB } = require('../configurations');
 
 module.exports.connectDB = () => {
-    mongoose.connect(db);
+    mongoose.connect(DB);
 
     return mongoose.connection;
 }

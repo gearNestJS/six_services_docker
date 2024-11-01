@@ -1,7 +1,14 @@
 const express = require('express');
 const app = express();
+
 const { connectDB } = require('../helpers/db');
-const { port, host } = require('../configurations');
+const { PORT, HOST } = require('../configurations');
+
+const startServer = () => {
+    app.listen(PORT, (_) => {
+        console.log(`Api service listening at ${HOST}:${PORT}`);
+    });
+};
 
 app.get('/', (_, res) => {
     res.redirect('test');
@@ -12,8 +19,5 @@ app.get('/test', (_, res) => {
 });
 
 connectDB()
-    .on('error', console.error(console, 'connection error'))
     .on('disconnected', connectDB)
-    .once('open', app.listen(PORT, (_) => {
-        console.log(`Api service listening at ${host}:${port}`);
-    }));
+    .once('open', startServer);

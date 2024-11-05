@@ -18,7 +18,7 @@ services:
       - api_db
 
   api_db:
-    image: mongo:latest
+    image: mongo:latest-alpine
     container_name: api_db
     restart: always
     ports:
